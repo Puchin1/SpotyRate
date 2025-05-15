@@ -118,7 +118,7 @@ def _sync_spotify_user(user_data: dict) -> SpotifyUser:
         "spotify_id": user_data["id"],
         "display_name": user_data.get("display_name", "Unknown"),
         "email": user_data.get("email", ""),
-        "profile_image_url": user_data.get("images", [{}])[0].get("url", ""),
+        "profile_image_url": user_data.get("images", [{}])[0].get("url") if user_data.get("images") else None
     }
 
     user, created = SpotifyUser.objects.update_or_create(
